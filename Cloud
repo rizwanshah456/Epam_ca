@@ -1,0 +1,48 @@
+Answer No-1
+
+
+#!/bin/bash
+function file_count()
+{
+local NUMBER_OF_FILE=$(ls -l | wc -l)
+echo "$NUMBER_OF_FILE"
+}
+file_count
+
+######################################################################################
+
+Answere No-2
+
+find -inname "myfile.txt"
+
+
+#########################################################################################
+
+Answere No-3
+
+
+#!/bin/bash
+
+# Check if directory name is provided through command-line
+if [ $# -eq 0 ]; then
+echo "ERROR: Please provide directory name as an argument."
+exit 1
+fi
+
+# Assign directory name to a variable
+dir_name=$1
+
+# Check if directory exists
+if [ ! -d "$dir_name" ]; then
+echo "ERROR: Directory does not exist."
+exit 1
+fi
+
+# Remove all permissions for groups and others
+chmod o-rwx,g-rwx $dir_name
+
+# Add all permissions for user
+chmod u+rwx $dir_name
+
+# Confirm permissions have been set
+ls -ld $dir_name
